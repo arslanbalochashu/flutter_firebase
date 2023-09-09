@@ -67,7 +67,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                     });
                     Utils().toastMessage(e.toString());
                   },);
-            })
+            }),
           ],
         ),
       ),

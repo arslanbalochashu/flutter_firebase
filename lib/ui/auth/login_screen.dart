@@ -2,9 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_firebase/ui/auth/signup_screen.dart';
+import 'package:flutter_firebase/ui/forgot_password.dart';
 import 'package:flutter_firebase/ui/posts/post_screen.dart';
 import 'package:flutter_firebase/utils/utils.dart';
 import 'package:flutter_firebase/widget/round_button.dart';
+
+import 'login_with_phone_number.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -119,9 +122,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       login();
                     }
                   }),
-              SizedBox(
-                height: 20,
+              Align(
+                alignment: Alignment.bottomRight,
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ForgotPasswordScreen()));
+                    },
+                    child: const Text(
+                      'Forgot Password',
+                      style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold),
+                    )),
               ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -131,7 +148,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignUpScreen()));
+                                builder: (context) => const SignUpScreen(
+
+                                )));
                       },
                       child: const Text(
                         'Sign Up',
@@ -140,7 +159,23 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold),
                       )),
                 ],
-              )
+              ),
+              const SizedBox(height: 30,),
+              InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginWithPhoneNumber()));
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: Colors.black),
+                  ),
+                  child: const Center(
+                    child: Text('Login with phone'),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
